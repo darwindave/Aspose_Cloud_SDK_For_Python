@@ -21,6 +21,131 @@ class Document:
 
         self.base_uri = Product.product_uri + 'words/' + self.filename
 
+    def save_as(self, options_xml, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param options_xml:
+        :param remote_folder:
+        :param storage_type:
+        :param storage_name:
+        :return:
+        """
+
+        str_uri = self.base_uri + '/saveAs'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+        signed_uri = Utils.sign(str_uri)
+
+        response = None
+        try:
+            response = requests.post(signed_uri, options_xml, headers={
+                'content-type': 'application/xml', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        validate_output = Utils.validate_result(response)
+
+        if not validate_output:
+            return Utils.download_file(response['SaveResult']['DestDocument']['Href'],
+                                       response['SaveResult']['DestDocument']['Href'],
+                                       remote_folder, storage_type, storage_name)
+        else:
+            return validate_output
+
+    def split_document(self, from_page, to_page, save_format='pdf',
+                       remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param from_page:
+        :param to_page:
+        :param save_format:
+        :param remote_folder:
+        :param storage_type:
+        :param storage_name:
+        :return:
+        """
+
+        str_uri = self.base_uri + '/split'
+        qry = {'from': from_page, 'to': to_page, 'format': save_format}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+        signed_uri = Utils.sign(str_uri)
+
+        response = None
+        try:
+            response = requests.post(signed_uri, None, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['SplitResult']
+
+    def get_page_setup(self, section_id, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param section_id:
+        :param remote_folder:
+        :param storage_type:
+        :param storage_name:
+        :return:
+        """
+
+        str_uri = self.base_uri + '/sections/' + str(section_id) + '/pageSetup'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+        signed_uri = Utils.sign(str_uri)
+
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['PageSetup']
+
+    def update_page_setup(self, section_id, options_xml, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param section_id:
+        :param options_xml
+        :param remote_folder:
+        :param storage_type:
+        :param storage_name:
+        :return:
+        """
+
+        str_uri = self.base_uri + '/sections/' + str(section_id) + '/pageSetup'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+        signed_uri = Utils.sign(str_uri)
+
+        response = None
+        try:
+            response = requests.post(signed_uri, options_xml, headers={
+                'content-type': 'application/xml', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['PageSetup']
+
     def append_document(self, doc_list, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
