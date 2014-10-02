@@ -329,6 +329,168 @@ class Extractor:
 
         self.base_uri = Product.product_uri + 'words/' + self.filename
 
+    def get_sections(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/sections'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Sections']
+
+    def get_section(self, section_id, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param section_id
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/sections/' + str(section_id)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Section']
+
+    def get_paragraphs(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/paragraphs'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Paragraphs']
+
+    def get_paragraph(self, para_id, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param para_id
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/paragraphs/' + str(para_id)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Paragraph']
+
+    def get_paragraph_run(self, para_id, run_index, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param para_id
+        :param run_index
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/paragraphs/' + str(para_id) + '/runs/' + str(run_index)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Run']
+
+    def get_paragraph_run_font(self, para_id, run_index, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param para_id
+        :param run_index
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/paragraphs/' + str(para_id) + '/runs/' + str(run_index) + '/font'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Font']
+
     def get_text(self, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
