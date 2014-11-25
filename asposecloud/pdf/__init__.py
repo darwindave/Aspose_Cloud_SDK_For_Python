@@ -371,12 +371,13 @@ class Converter:
 
         self.base_uri = Product.product_uri + 'pdf/' + self.filename
 
-    def convert_to_image(self, page_number, save_format, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert_to_image(self, page_number, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
         """
         Convert a page to image
 
         :param page_number:
         :param save_format:
+        :param stream_out:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -407,18 +408,22 @@ class Converter:
 
         validate_output = Utils.validate_result(response)
         if not validate_output:
-            output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(page_number) + '.' + \
-                save_format
-            Utils.save_file(response, output_path)
-            return output_path
+            if not stream_out:
+                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(page_number) + '.' + \
+                    save_format
+                Utils.save_file(response, output_path)
+                return output_path
+            else:
+                return response.content
         else:
             return validate_output
 
-    def convert(self, save_format, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert(self, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
         """
         Convert a pdf file to any supported format
 
         :param save_format:
+        :param stream_out:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -442,18 +447,22 @@ class Converter:
             print response.content
             exit(1)
 
-        save_format = 'zip' if save_format == 'html' else save_format
-        output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
-        Utils.save_file(response, output_path)
-        return output_path
+        if not stream_out:
+            save_format = 'zip' if save_format == 'html' else save_format
+            output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+            Utils.save_file(response, output_path)
+            return output_path
+        else:
+            return response.content
 
     @staticmethod
-    def convert_local_file(input_file, save_format):
+    def convert_local_file(input_file, save_format, stream_out=False):
         """
         Convert a local pdf file to any supported format
 
         :param input_file:
         :param save_format:
+        :param stream_out:
         :return:
         """
         if not input_file:
@@ -474,7 +483,10 @@ class Converter:
             print response.content
             exit(1)
 
-        save_format = 'zip' if save_format == 'html' else save_format
-        output_path = AsposeApp.output_path + Utils.get_filename(input_file) + '.' + save_format
-        Utils.save_file(response, output_path)
-        return output_path
+        if not stream_out:
+            save_format = 'zip' if save_format == 'html' else save_format
+            output_path = AsposeApp.output_path + Utils.get_filename(input_file) + '.' + save_format
+            Utils.save_file(response, output_path)
+            return output_path
+        else:
+            return response.content

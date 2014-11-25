@@ -129,7 +129,7 @@ class Converter:
 
         self.base_uri = Product.product_uri + 'email/' + self.filename
 
-    def convert(self, save_format, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert(self, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
         """
         convert an email message document to a different format
 
@@ -159,9 +159,12 @@ class Converter:
 
         validate_output = Utils.validate_result(response)
         if not validate_output:
-            output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
-            Utils.save_file(response, output_path)
-            return output_path
+            if not stream_out:
+                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+                Utils.save_file(response, output_path)
+                return output_path
+            else:
+                return response.content
         else:
             return validate_output
 

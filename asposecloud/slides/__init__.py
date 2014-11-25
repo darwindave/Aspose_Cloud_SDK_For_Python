@@ -547,11 +547,12 @@ class Converter:
 
         self.base_uri = Product.product_uri + 'slides/' + self.filename
 
-    def convert(self, slide_number, save_format, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert(self, slide_number, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param slide_number:
         :param save_format:
+        :param stream_out:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -580,11 +581,14 @@ class Converter:
 
         validate_output = Utils.validate_result(response)
         if not validate_output:
-            save_format = 'zip' if save_format == 'html' else save_format
-            output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(slide_number) + '.' + \
-                save_format
-            Utils.save_file(response, output_path)
-            return output_path
+            if not stream_out:
+                save_format = 'zip' if save_format == 'html' else save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(slide_number) + '.' + \
+                    save_format
+                Utils.save_file(response, output_path)
+                return output_path
+            else:
+                return response.content
         else:
             return validate_output
 
@@ -596,6 +600,7 @@ class Converter:
         :param save_format:
         :param width:
         :param height:
+        :param stream_out:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -629,9 +634,12 @@ class Converter:
 
         validate_output = Utils.validate_result(response)
         if not validate_output:
-            output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(slide_number) + '.' + \
-                save_format
-            Utils.save_file(response, output_path)
-            return output_path
+            if not stream_out:
+                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_' + str(slide_number) + '.' + \
+                    save_format
+                Utils.save_file(response, output_path)
+                return output_path
+            else:
+                return response.content
         else:
             return validate_output
