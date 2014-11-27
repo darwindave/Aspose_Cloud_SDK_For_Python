@@ -1716,7 +1716,7 @@ class Converter:
         self.base_uri = Product.product_uri + 'cells/' + self.filename
 
     def autoshape_to_image(self, shape_index, worksheet_name, save_format, password=None, stream_out=False,
-                           remote_folder='', storage_type='Aspose', storage_name=None):
+                           output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param shape_index:
@@ -1724,6 +1724,7 @@ class Converter:
         :param save_format:
         :param password:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -1750,8 +1751,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_shape_' + str(shape_index)\
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '_shape_' + str(shape_index)\
                     + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
@@ -1761,7 +1764,7 @@ class Converter:
             return validate_output
 
     def chart_to_image(self, chart_index, worksheet_name, save_format, password=None, stream_out=False,
-                       remote_folder='', storage_type='Aspose', storage_name=None):
+                       output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param chart_index:
@@ -1769,6 +1772,7 @@ class Converter:
         :param save_format:
         :param password:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -1795,8 +1799,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_chart_' + str(chart_index)\
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '_chart_' + str(chart_index)\
                     + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
@@ -1806,7 +1812,7 @@ class Converter:
             return validate_output
 
     def oleobject_to_image(self, ole_index, worksheet_name, save_format, password=None, stream_out=False,
-                           remote_folder='', storage_type='Aspose', storage_name=None):
+                           output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param ole_index:
@@ -1814,6 +1820,7 @@ class Converter:
         :param save_format:
         :param password:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -1840,8 +1847,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_ole_' + str(ole_index)\
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '_ole_' + str(ole_index)\
                     + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
@@ -1851,7 +1860,7 @@ class Converter:
             return validate_output
 
     def picture_to_image(self, picture_index, worksheet_name, save_format, password=None, stream_out=False,
-                         remote_folder='', storage_type='Aspose', storage_name=None):
+                         output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param picture_index:
@@ -1859,6 +1868,7 @@ class Converter:
         :param save_format:
         :param password:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -1885,8 +1895,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '_pic_' + str(picture_index)\
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '_pic_' + str(picture_index)\
                     + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
@@ -1896,7 +1908,7 @@ class Converter:
             return validate_output
 
     def convert_to_image(self, worksheet_name, save_format, password=None, stream_out=False,
-                         remote_folder='', storage_type='Aspose', storage_name=None):
+                         output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param worksheet_name:
@@ -1932,8 +1944,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
@@ -1941,12 +1955,13 @@ class Converter:
         else:
             return validate_output
 
-    def convert(self, save_format, stream_out=False,
+    def convert(self, save_format, stream_out=False, output_filename=None,
                 remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param save_format:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -1972,8 +1987,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
@@ -1982,12 +1999,13 @@ class Converter:
             return validate_output
 
     @staticmethod
-    def convert_local_file(input_file, save_format, stream_out=False):
+    def convert_local_file(input_file, save_format, stream_out=False, output_filename=None):
         """
 
         :param input_file:
         :param save_format:
         :param stream_out:
+        :param output_filename:
         :return:
         """
         if not input_file:
@@ -2011,8 +2029,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = input_file
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(input_file) + '.' + save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
