@@ -129,11 +129,13 @@ class Converter:
 
         self.base_uri = Product.product_uri + 'email/' + self.filename
 
-    def convert(self, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert(self, save_format, stream_out=False, output_filename=None,
+                remote_folder='', storage_type='Aspose', storage_name=None):
         """
         convert an email message document to a different format
 
         :param save_format:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -160,7 +162,9 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+                if output_filename is None:
+                    output_filename = self.filename
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
