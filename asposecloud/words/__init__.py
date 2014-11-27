@@ -930,11 +930,13 @@ class Converter:
 
         self.base_uri = Product.product_uri + 'words/' + self.filename
 
-    def convert(self, save_format, stream_out=False, remote_folder='', storage_type='Aspose', storage_name=None):
+    def convert(self, save_format, stream_out=False, output_filename=None,
+                remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
         :param save_format:
         :param stream_out:
+        :param output_filename:
         :param remote_folder: storage path to operate
         :param storage_type: type of storage e.g Aspose, S3
         :param storage_name: name of storage e.g. MyAmazonS3
@@ -961,8 +963,11 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = self.filename
+
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(self.filename) + '.' + save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
@@ -971,12 +976,13 @@ class Converter:
             return validate_output
 
     @staticmethod
-    def convert_local_file(input_file, save_format, stream_out=False):
+    def convert_local_file(input_file, save_format, stream_out=False, output_filename=None):
         """
 
         :param input_file:
         :param save_format:
         :param stream_out:
+        :param output_filename:
         :return:
         """
         if not input_file:
@@ -1000,8 +1006,10 @@ class Converter:
         validate_output = Utils.validate_result(response)
         if not validate_output:
             if not stream_out:
+                if output_filename is None:
+                    output_filename = input_file
                 save_format = 'zip' if save_format == 'html' else save_format
-                output_path = AsposeApp.output_path + Utils.get_filename(input_file) + '.' + save_format
+                output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
                 Utils.save_file(response, output_path)
                 return output_path
             else:
