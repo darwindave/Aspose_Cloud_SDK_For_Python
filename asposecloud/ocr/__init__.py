@@ -55,7 +55,7 @@ class Extractor:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
 
         return response['Text'] if response['Code'] == 200 else False
@@ -73,7 +73,7 @@ class Extractor:
         signed_uri = Utils.sign(str_uri)
         with open(local_file, 'rb') as payload:
             response = requests.post(signed_uri, payload, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }).json()
 
             return response['Text'] if response['Code'] == 200 else False
@@ -90,7 +90,7 @@ class Extractor:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.post(signed_uri, None, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
 
         return response['Text'] if response['Code'] == 200 else False

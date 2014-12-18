@@ -60,7 +60,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['Files']
 
@@ -81,7 +81,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }, stream=True)
         return response
 
@@ -102,7 +102,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['FileExist']['IsExist']
 
@@ -123,7 +123,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.delete(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return True if response['Code'] == 200 else False
 
@@ -144,7 +144,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.put(signed_uri, '', headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return True if response['Code'] == 200 else False
 
@@ -165,7 +165,7 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.delete(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return True if response['Code'] == 200 else False
 
@@ -181,6 +181,6 @@ class Folder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['DiscUsage']

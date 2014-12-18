@@ -38,7 +38,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -65,7 +65,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -95,7 +95,7 @@ class Document:
         response = None
         try:
             response = requests.put(signed_uri, json_data, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -148,7 +148,7 @@ class Document:
         response = None
         try:
             response = requests.delete(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -177,7 +177,7 @@ class Document:
         response = None
         try:
             response = requests.post(signed_uri, json_data, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -202,7 +202,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -234,7 +234,7 @@ class Document:
         response = None
         try:
             response = requests.post(signed_uri, json_data, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -307,7 +307,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -337,7 +337,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -367,7 +367,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -397,7 +397,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -427,7 +427,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -457,7 +457,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -492,7 +492,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -522,7 +522,7 @@ class Extractor:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -573,7 +573,7 @@ class Converter:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -629,7 +629,7 @@ class Converter:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:

@@ -47,7 +47,7 @@ class Document:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.post(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -90,7 +90,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -133,7 +133,7 @@ class Document:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.post(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -175,7 +175,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -219,7 +219,7 @@ class Document:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.post(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -262,7 +262,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -305,7 +305,7 @@ class Document:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.post(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -348,7 +348,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -382,7 +382,7 @@ class Document:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             })
             response.raise_for_status()
             response = response.json()
@@ -433,7 +433,7 @@ class Image:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
@@ -480,7 +480,7 @@ class Image:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.post(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -537,7 +537,7 @@ class Converter:
         try:
             with open(input_file_path, 'rb') as payload:
                 response = requests.get(signed_uri, data=payload, headers={
-                    'content-type': 'application/json', 'accept': 'application/json'
+                    'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
                 }, stream=True)
                 response.raise_for_status()
         except requests.HTTPError as e:
@@ -578,7 +578,7 @@ class Converter:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:

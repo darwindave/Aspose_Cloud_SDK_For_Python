@@ -55,7 +55,7 @@ class Builder:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }, stream=True)
 
         return response
@@ -93,7 +93,7 @@ class Reader:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['Barcodes'] if response['Code'] == 200 else False
 
@@ -121,6 +121,6 @@ class Reader:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
-            'content-type': 'application/json', 'accept': 'application/json'
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['Barcodes'] if response['Code'] == 200 else False

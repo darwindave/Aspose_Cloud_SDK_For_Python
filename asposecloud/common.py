@@ -183,7 +183,7 @@ class Utils:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json'
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
