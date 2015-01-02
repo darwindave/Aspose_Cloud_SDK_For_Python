@@ -7,6 +7,7 @@ import json
 from asposecloud.storage import Folder
 from asposecloud.pdf import Converter
 from asposecloud.pdf import TextEditor
+from asposecloud.pdf import Document
 
 
 class TestAsposePdf(unittest.TestCase):
@@ -19,6 +20,24 @@ class TestAsposePdf(unittest.TestCase):
         asposecloud.AsposeApp.app_sid = str(data['app_sid'])
         asposecloud.AsposeApp.output_path = str(data['output_location'])
         asposecloud.Product.product_uri = str(data['product_uri'])
+
+    def test_create_pdf(self):
+        folder = Folder()
+        response = folder.upload_file('./data/create_pdf_test.svg')
+        response = folder.upload_file('./data/create_pdf_test.jpg')
+
+        # Create object of pdf document class
+        document = Document('create_pdf_svg.pdf')
+
+        document.create_pdf('create_pdf_test.svg','svg')
+        self.assertEqual(True, os.path.exists('./output/create_pdf_svg.pdf'))
+
+        # Create object of pdf document class
+        documenta = Document('create_pdf_jpeg.pdf')
+
+        documenta.create_pdf('create_pdf_test.jpg','jpeg')
+        self.assertEqual(True, os.path.exists('./output/create_pdf_jpeg.pdf'))
+
 
     def test_convert_local_file(self):
         # Create object of pdf converter class
