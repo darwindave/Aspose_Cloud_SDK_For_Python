@@ -93,6 +93,107 @@ class Reader:
 
         signed_uri = Utils.sign(str_uri)
         response = requests.get(signed_uri, headers={
+            'content-type': 'application/json', 'accept': 'application/json'
+        }).json()
+        return response['Barcodes'] if response['Code'] == 200 else False
+
+    def read_region(self, x, y, w, h, symbology=None, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+        Read a Barcode
+
+        :param x:
+        :param y:
+        :param w:
+        :param h:
+        :param symbology:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/' + self.filename + '/recognize?rectX=' + str(x) + '&rectY=' + str(y)
+        str_uri += '&rectWidth=' + str(w) + '&rectHeight=' + str(h)
+        if symbology:
+            str_uri += '&type=' + symbology
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = requests.get(signed_uri, headers={
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+        }).json()
+        return response['Barcodes'] if response['Code'] == 200 else False
+
+    def read_with_checksum(self, checksum_validation, symbology=None, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+        Read a Barcode
+
+        :param checksum_validation:
+        :param symbology:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/' + self.filename + '/recognize?checksumValidation=' + checksum_validation
+        if symbology:
+            str_uri += '&type=' + symbology
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = requests.get(signed_uri, headers={
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+        }).json()
+        return response['Barcodes'] if response['Code'] == 200 else False
+
+    def read_barcode_count(self, barcodes_count, symbology=None,
+                           remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+        Read a Barcode
+
+        :param barcodes_count:
+        :param symbology:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/' + self.filename + '/recognize?barcodesCount=' + barcodes_count
+        if symbology:
+            str_uri += '&type=' + symbology
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = requests.get(signed_uri, headers={
+            'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+        }).json()
+        return response['Barcodes'] if response['Code'] == 200 else False
+
+    def read_from_url(self, url, symbology=None, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+        Read a Barcode
+
+        :param url:
+        :param symbology:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not url:
+            raise ValueError("url not specified")
+
+        str_uri = self.base_uri + '/' + self.filename + '/recognize?url=' + url
+        if symbology:
+            str_uri += '&type=' + symbology
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = requests.get(signed_uri, headers={
             'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
         }).json()
         return response['Barcodes'] if response['Code'] == 200 else False

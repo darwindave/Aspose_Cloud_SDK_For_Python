@@ -28,5 +28,15 @@ class TestAsposeBarcode(unittest.TestCase):
         response = reader.read_from_local_image('./data/barcodeQR.png', 'QR')
         self.assertEqual(list, type(response))
 
+    def test_read_from_url(self):
+        reader = Reader('barcodeQR.png')
+        response = reader.read_from_url('http://www.qrstuff.com/images/default_qrcode.png');
+        self.assertEqual(list, type(response))
+
+    def test_read_region(self):
+        reader = Reader('barcodeQR.png')
+        response = reader.read_region(0,0,175,175)
+        self.assertEqual(list, type(response))
+
 if __name__ == '__main__':
     unittest.main()
