@@ -6,7 +6,8 @@ import json
 
 from asposecloud.storage import Folder
 from asposecloud.slides import Converter
-
+from asposecloud.slides import Document
+from asposecloud.slides import Extractor
 
 class TestAsposeSlides(unittest.TestCase):
 
@@ -27,6 +28,16 @@ class TestAsposeSlides(unittest.TestCase):
         converter = Converter('test_convert_slide.pptx')
         converter.convert(1,'png')
         self.assertTrue(os.path.exists('./output/test_convert_slide_1.png'))
+
+    def test_get_shape(self):
+        folder = Folder()
+        response = folder.upload_file('./data/test_convert_slide.pptx')
+        self.assertEqual(True, response)
+
+        ex = Extractor('test_convert_slide.pptx')
+        response = ex.get_shape(1,1)
+        self.assertNotEquals(False, response)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -187,6 +187,96 @@ class Document:
             exit(1)
         return response
 
+    def get_background(self, slide_number, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param slide_number:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not slide_number:
+            raise ValueError("slide_number not specified")
+
+        str_uri = self.base_uri + '/slides/' + str(slide_number) + '/background'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+        return response['Background']
+
+    def delete_background(self, slide_number, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param slide_number:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not slide_number:
+            raise ValueError("slide_number not specified")
+
+        str_uri = self.base_uri + '/slides/' + str(slide_number) + '/background'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+        return True if response['Code'] == 200 else False
+
+    def delete_slide(self, slide_number, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param slide_number:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not slide_number:
+            raise ValueError("slide_number not specified")
+
+        str_uri = self.base_uri + '/slides/' + str(slide_number)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+        return True if response['Code'] == 200 else False
+
     def get_slide_count(self, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
@@ -376,6 +466,40 @@ class Extractor:
             print response.content
             exit(1)
         return response['ShapeList']['ShapesLinks']
+
+    def get_shape(self, slide_number, shape_index, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param slide_number:
+        :param shape_index:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not slide_number:
+            raise ValueError("slide_number not specified")
+
+        if not shape_index:
+            raise ValueError("shape_index not specified")
+
+        str_uri = self.base_uri + '/slides/' + str(slide_number) + '/shapes/' + str(shape_index)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+        return response['Shape']
 
     def get_color_scheme(self, slide_number, remote_folder='', storage_type='Aspose', storage_name=None):
         """
@@ -595,6 +719,45 @@ class Converter:
                 return response.content
         else:
             return validate_output
+
+    @staticmethod
+    def convert_local_file(input_file, save_format, stream_out=False, output_filename=None):
+        """
+        Convert a local pdf file to any supported format
+
+        :param input_file:
+        :param save_format:
+        :param stream_out:
+        :param output_filename:
+        :return:
+        """
+        if not input_file:
+            raise ValueError("input_file not specified")
+
+        if not save_format:
+            raise ValueError("save_format not specified")
+
+        str_uri = Product.product_uri + 'slides/convert?format=' + save_format
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = Utils.upload_file_binary(input_file, signed_uri)
+            response.raise_for_status()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        if not stream_out:
+            if output_filename is None:
+                output_filename = input_file
+            save_format = 'zip' if save_format == 'html' else save_format
+            output_path = AsposeApp.output_path + Utils.get_filename(output_filename) + '.' + save_format
+            Utils.save_file(response, output_path)
+            return output_path
+        else:
+            return response.content
 
     def convert_to_image(self, slide_number, save_format, width=None, height=None, stream_out=False,
                          output_filename=None, remote_folder='', storage_type='Aspose', storage_name=None):
