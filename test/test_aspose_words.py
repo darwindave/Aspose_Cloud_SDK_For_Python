@@ -96,6 +96,16 @@ class TestAsposeWords(unittest.TestCase):
 
         self.assertEqual(dict, type(response))
 
+    def test_get_bookmarks(self):
+        fld = Folder()
+        response = fld.upload_file('./data/test_multi_pages.docx')
+        self.assertEqual(response, True)
+
+        document = Document('test_multi_pages.docx')
+        response = document.get_bookmarks()
+
+        self.assertEqual(list, type(response))
+
     def test_get_page_setup(self):
         fld = Folder()
         response = fld.upload_file('./data/test_multi_pages.docx')

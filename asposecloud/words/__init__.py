@@ -205,6 +205,235 @@ class Document:
 
         return response['DocumentProperties']['List']
 
+    def remove_header_footer(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/headersFooters'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def get_bookmarks_count(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/bookmarks'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return len(response['Bookmarks']['BookmarkList'])
+
+    def get_hyperlinks(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/hyperlinks'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Hyperlinks']['HyperlinkList']
+
+    def get_hyperlink(self, hyperlink_index, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param hyperlink_index:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not hyperlink_index:
+            raise ValueError("hyperlink_index not specified")
+
+        str_uri = self.base_uri + '/hyperlinks/' + str(hyperlink_index)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Hyperlink']
+
+    def get_hyperlinks_count(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/hyperlinks'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return len(response['Hyperlinks']['HyperlinkList'])
+
+    def get_bookmarks(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/bookmarks'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Bookmarks']['BookmarkList']
+
+    def get_bookmark(self, bookmark_name, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param bookmark_name:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not bookmark_name:
+            raise ValueError("bookmark_name not specified")
+
+        str_uri = self.base_uri + '/bookmarks/' + bookmark_name
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Bookmark']
+
+    def update_bookmark(self, bookmark_name, bookmark_text, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param bookmark_name:
+        :param bookmark_text:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        if not bookmark_name:
+            raise ValueError("bookmark_name not specified")
+
+        if not bookmark_text:
+            raise ValueError("bookmark_text not specified")
+
+        post_data = {'Text': bookmark_text}
+
+        str_uri = self.base_uri + '/bookmarks/' + bookmark_name
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, post_data, headers={
+                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
     def get_document_info(self, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
