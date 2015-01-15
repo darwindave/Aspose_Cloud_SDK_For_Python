@@ -61,11 +61,12 @@ In order to manipulate any files, you first need to upload them to the Aspose st
 
 The Aspose Cloud SDK for Python allows you to save the output files at your specified location.
 
+###Docs
 
-###Help Material
+For SDK API Ref Docs, please go through [API Docs](http://asposeforcloud.github.io/python-sdk-docs/).
+For SDK Usage Examples, please go through [wiki](https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Python/wiki).
+For Aspose Cloud APIs related help, please go through [Aspose.Total for Cloud](http://www.aspose.com/cloud/total-api.aspx).
 
-You may get help regarding Aspose API or Aspose Cloud SDK for Python on [www.Aspose.com](http://www.Aspose.com).
+##Start a Free Trial Today
 
-##How to use Aspose Cloud SDK for Python?
-
-Aspose for Cloud products: http://www.aspose.com/cloud/total-api.aspx
+Start a free trial today – all you need is to [sign up](https://cloud.aspose.com/SignUp) with Aspose for Cloud service. Once you have signed up, you are ready to try powerful file processing features offered by Aspose for Cloud.
