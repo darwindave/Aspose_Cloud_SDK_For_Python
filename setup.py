@@ -1,15 +1,15 @@
 __author__ = 'assadmahmood'
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name = 'asposecloud',
-    packages = ['barcode', 'cells', 'email', 'ocr', 'pdf', 'slides', 'tasks', 'words'],
-    version = '1.0.0',
+    packages = find_packages(),
+    version = '1.0.1',
     description = 'Aspose Cloud SDK for Python allows you to use Aspose API in your Python applications',
     author='Assad Mahmood Qazi',
     author_email='assadvirgo@gmail.com',
-    url='https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Python/tree/revamp',
+    url='https://github.com/asposeforcloud/Aspose_Cloud_SDK_For_Python',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
