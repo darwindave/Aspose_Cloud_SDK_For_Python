@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name = 'asposecloud',
     packages = find_packages(),
-    version = '1.0.6',
+    version = '1.0.5',
     description = 'Aspose Cloud SDK for Python allows you to use Aspose API in your Python applications',
     author='Assad Mahmood Qazi',
     author_email='assadvirgo@gmail.com',
