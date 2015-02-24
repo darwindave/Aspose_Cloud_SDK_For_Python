@@ -247,7 +247,67 @@ class Worksheet:
         response = None
         try:
             response = requests.get(signed_uri, headers={
-                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Cell']
+
+    def get_first_cell(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/firstcell'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Cell']
+
+    def get_last_cell(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/endcell'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
             })
             response.raise_for_status()
             response = response.json()
@@ -560,6 +620,96 @@ class Worksheet:
 
         return response['Cells']['MaxColumn']
 
+    def get_max_data_column(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/maxdatacolumn'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
+
+    def get_min_column(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/mincolumn'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
+
+    def get_min_data_column(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/mindatacolumn'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
+
     def get_max_row(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
         """
 
@@ -589,6 +739,96 @@ class Worksheet:
             exit(1)
 
         return response['Cells']['MaxRow']
+
+    def get_max_data_row(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/maxdatarow'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
+
+    def get_min_row(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/minrow'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
+
+    def get_min_data_row(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param offset:
+        :param count:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/mindatarow'
+        qry = {'offset': offset, 'count': count}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response
 
     def get_cells_list(self, offset, count, remote_folder='', storage_type='Aspose', storage_name=None):
         """
@@ -679,6 +919,261 @@ class Worksheet:
             exit(1)
 
         return response['Columns']['ColumnsList']
+
+    def add_ole_object(self, ole_file, image_file, upper_left_row, upper_left_col, height, width,
+                       remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param ole_file:
+        :param image_file:
+        :param upper_left_row:
+        :param upper_left_col:
+        :param height:
+        :param width:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        str_uri = self.base_uri + '/oleobjects'
+        qry = {'oleFile': ole_file, 'imageFile': image_file, 'upperLeftRow': upper_left_row,
+               'upperLeftColumn': upper_left_col, 'height': height, 'width': width}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.put(signed_uri, None, headers={
+                'content-type': 'application/json', 'accept': 'application/json',
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def update_ole_object(self, index, xml_str, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param index:
+        :param xml_str:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        str_uri = self.base_uri + '/oleobjects/' + str(index)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, xml_str, headers={
+                'content-type': 'application/json', 'accept': 'application/json',
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def delete_ole_object(self, index, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param index:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        str_uri = self.base_uri + '/oleobjects/' + str(index)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json',
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def delete_all_ole_objects(self, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        str_uri = self.base_uri + '/oleobjects'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json',
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def update_properties(self, worksheet_name, gridlines=False, pagebreak=False, ruler=False,
+                  remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param worksheet_name:
+        :param gridlines:
+        :param pagebreak:
+        :param ruler:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+
+        json_data = json.dumps({'Name': worksheet_name, 'IsGridlinesVisible': gridlines, 'IsPageBreakPreview': pagebreak,
+               'IsRulerVisible': ruler})
+
+        str_uri = self.base_uri
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, data=json_data, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        validate_output = Utils.validate_result(response)
+        if not validate_output:
+            return Utils.download_file(self.filename, self.filename, remote_folder, storage_type, storage_name)
+        else:
+            return validate_output
+
+    def set_cell_value(self, cell_name, value_type, value, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param cell_name:
+        :param value_type:
+        :param value:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/' + cell_name
+
+        qry = {'value': value, 'type': value_type}
+        str_uri = Utils.build_uri(str_uri, qry)
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, None, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def set_formula(self, cell_name, formula, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param cell_name:
+        :param formula:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/cells/' + cell_name
+
+        qry = {'formula': formula}
+        str_uri = Utils.build_uri(str_uri, qry)
+
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, None, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def calculate_formula(self, formula, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param formula:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/formulaResult'
+
+        qry = {'formula': formula}
+        str_uri = Utils.build_uri(str_uri, qry)
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.get(signed_uri, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Value']
 
 # ========================================================================
 # WORKBOOK CLASS
@@ -888,7 +1383,39 @@ class Workbook:
         response = None
         try:
             response = requests.post(signed_uri, json_data, headers={
-                'content-type': 'application/json', 'accept': 'application/json', 'x-aspose-client' : 'PYTHONSDK/v1.0'
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return True if response['Code'] == 200 else False
+
+    def decrypt_workbook(self, encryption_type, password, key_length,
+                         remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param encryption_type:
+        :param password:
+        :param key_length:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/encryption'
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        json_data = json.dumps({'EncryptionType': encryption_type, 'KeyLength': key_length, 'Password': password})
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.delete(signed_uri, data=json_data, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
             })
             response.raise_for_status()
             response = response.json()
@@ -1099,6 +1626,33 @@ class Workbook:
             exit(1)
 
         return response
+
+    def split_workbook(self, save_format, remote_folder='', storage_type='Aspose', storage_name=None):
+        """
+
+        :param save_format:
+        :param remote_folder: storage path to operate
+        :param storage_type: type of storage e.g Aspose, S3
+        :param storage_name: name of storage e.g. MyAmazonS3
+        :return:
+        """
+        str_uri = self.base_uri + '/split?format=' + save_format
+        str_uri = Utils.append_storage(str_uri, remote_folder, storage_type, storage_name)
+
+        signed_uri = Utils.sign(str_uri)
+        response = None
+        try:
+            response = requests.post(signed_uri, None, headers={
+                'content-type': 'application/json', 'accept': 'application/json'
+            })
+            response.raise_for_status()
+            response = response.json()
+        except requests.HTTPError as e:
+            print e
+            print response.content
+            exit(1)
+
+        return response['Result']['Documents']
 
     def get_properties(self, remote_folder='', storage_type='Aspose', storage_name=None):
         """
