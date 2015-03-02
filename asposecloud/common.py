@@ -22,7 +22,7 @@ class Utils:
         return
 
     @staticmethod
-    def make_bytes():
+    def make_bytes(data, index = 0):
         import sys
         if sys.version < '3':
             def byteindex(data, index):
