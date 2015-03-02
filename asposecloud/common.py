@@ -22,6 +22,21 @@ class Utils:
         return
 
     @staticmethod
+    def make_bytes():
+        import sys
+        if sys.version < '3':
+            def byteindex(data, index):
+                return ord(data[index])
+
+            def iterbytes(data):
+                return (ord (char) for char in data)
+
+        else:
+            byteindex = lambda x, i: x[i]
+            iterbytes = lambda x: iter(x)
+        return iterbytes
+
+    @staticmethod
     def build_uri(path, qry_data=None):
         """
         URI Builder - Accept path and query string to generate a URI.
@@ -92,7 +107,16 @@ class Utils:
             url_part_to_sign = url.scheme + "://" + url.netloc + url.path + "?" + url.query + "&appSID=" + \
                 AsposeApp.app_sid
 
-        signature = hmac.new(AsposeApp.app_key, url_part_to_sign, hashlib.sha1).digest().encode('base64')[:-1]
+        """
+        py3 compatibility see http://python3porting.com/problems.html
+        """
+
+        # byteindex(b('Test'), 2)
+        # 115
+        # print([x for x in iterbytes(b('Test'))])
+        # [84, 101, 115, 116]
+        key = Utils.make_bytes(AsposeApp.app_key)
+        signature = hmac.new(key, url_part_to_sign, hashlib.sha1).digest().encode('base64')[:-1]
         signature = re.sub('[=_-]', '', signature)
 
         if url.query == "":
