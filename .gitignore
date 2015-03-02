@@ -9,3 +9,5 @@ dist/*
 
 #pycharm
 .idea
+
+test/setup.json
