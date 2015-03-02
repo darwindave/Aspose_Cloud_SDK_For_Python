@@ -34,7 +34,7 @@ class Utils:
         else:
             byteindex = lambda x, i: x[i]
             iterbytes = lambda x: iter(x)
-        return [x for x in iterbytes]
+        return [x for x in iterbytes()]
 
     @staticmethod
     def build_uri(path, qry_data=None):
