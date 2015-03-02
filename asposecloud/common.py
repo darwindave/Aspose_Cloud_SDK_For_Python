@@ -84,7 +84,7 @@ class Utils:
         :return: Returns Signed URL
         """
         url_to_sign = url_to_sign.replace(" ", "%20")
-        url = parse(url_to_sign)
+        url = parse.urlparse(url_to_sign)
 
         if url.query == "":
             url_part_to_sign = url.scheme + "://" + url.netloc + url.path + "?appSID=" + AsposeApp.app_sid
