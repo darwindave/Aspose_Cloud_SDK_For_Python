@@ -43,8 +43,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -83,8 +83,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['SplitResult']
@@ -111,8 +111,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['PageSetup']
@@ -140,8 +140,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['PageSetup']
@@ -169,8 +169,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -199,8 +199,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['DocumentProperties']['List']
@@ -225,8 +225,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return True if response['Code'] == 200 else False
@@ -251,8 +251,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return len(response['Bookmarks']['BookmarkList'])
@@ -277,8 +277,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Hyperlinks']['HyperlinkList']
@@ -308,8 +308,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Hyperlink']
@@ -334,8 +334,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return len(response['Hyperlinks']['HyperlinkList'])
@@ -360,8 +360,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Bookmarks']['BookmarkList']
@@ -391,8 +391,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Bookmark']
@@ -428,8 +428,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return True if response['Code'] == 200 else False
@@ -453,8 +453,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Document']
@@ -480,8 +480,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['DocumentProperty']
@@ -510,8 +510,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['DocumentProperty']
@@ -537,8 +537,8 @@ class Document:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return True if response['Code'] == 200 else False
@@ -578,8 +578,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Sections']
@@ -605,8 +605,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Section']
@@ -631,8 +631,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Paragraphs']
@@ -658,8 +658,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Paragraph']
@@ -686,8 +686,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Run']
@@ -714,8 +714,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['Font']
@@ -740,8 +740,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         output_text = ''
@@ -769,8 +769,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         return response['DrawingObjects']['List']
@@ -796,8 +796,8 @@ class Extractor:
             })
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -829,8 +829,8 @@ class Extractor:
             })
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -863,8 +863,8 @@ class Extractor:
             })
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -900,8 +900,8 @@ class Extractor:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         object_info = response['DrawingObject']
@@ -926,8 +926,8 @@ class Extractor:
             })
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -977,8 +977,8 @@ class MailMerge:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1013,8 +1013,8 @@ class MailMerge:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1062,8 +1062,8 @@ class Builder:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1096,8 +1096,8 @@ class Builder:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1134,8 +1134,8 @@ class Builder:
             response.raise_for_status()
             response = response.json()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1185,8 +1185,8 @@ class Converter:
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)
@@ -1228,8 +1228,8 @@ class Converter:
             response = Utils.upload_file_binary(input_file, signed_uri)
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         validate_output = Utils.validate_result(response)

@@ -187,8 +187,8 @@ class Utils:
             }, stream=True)
             response.raise_for_status()
         except requests.HTTPError as e:
-            print e
-            print response.content
+            print(e)
+            print(response.content)
             exit(1)
 
         Utils.save_file(response, AsposeApp.output_path + output_filename)
